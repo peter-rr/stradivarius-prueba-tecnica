@@ -1,0 +1,17 @@
+{
+  "name": "@peter-rr/stradivarius-prueba-tecnica",
+  "version": "1.0.0",
+  "description": "technical assessment for Stradivarius",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peter-rr/stradivarius-prueba-tecnica.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@peter-rr",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  }
+}
