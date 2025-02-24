@@ -1,4 +1,4 @@
-# stradivarius-prueba-tecnica
+# README
 
 ## Test Cases Challenge
 
@@ -8,19 +8,11 @@ See the answers to the questions [here](/docs/challenge-casos-de-prueba.md).
 
 This project is a high-level design for a test automation framework built with [Cypress](https://www.cypress.io/) and JavaScript, created to provide a robust, modular, and scalable testing solution.
 
-The framework has been developed as part of a technical assessment to test the functionalities within the "Chat" tab of the [EdgeTier demo environment](http://demo.edgetier.com/), and demonstrate my envision of the framework's structure focusing on simplify automated testing processes with reusable components, straightforward configuration, and easy maintenance.
+The framework has been developed as part of a technical assessment to test some functionalities at [Demoblaze test environment](https://demoblaze.com/), and demonstrate my envision of the framework's structure focusing on simplify automated testing processes with reusable components, straightforward configuration, and easy maintenance.
 
 ## Why this solution?
 
-In order to implement this solution, I have chosen Cypress framework and also making use of the Page Object design pattern. Here are the key reasons to take those decisions:
-
-### Cypress framework
-
-- **Faster scripting (less code):** Hides all all unnecessary noise and stuff that coder does not need to see. So you need to write a less number of lines of code to automate certain scenario, and as a result you'll have a faster scripting of your scenarios and easier maintenance of them.
-- **Intuitive Assertions and Chainable Commands:** Simple syntax for assertions and supports chaining commands, which can make tests more readable and reduce boilerplate code.
-- **Better "auto-wait" mechanism:** Cypress automatically waits for elements to appear in the DOM, for animations to complete, and for AJAX requests to finish, making tests less prone to timing. This auto-waiting helps reduce the need for explicit waits and retries, making tests generally more stable.
-- **Ease of setup and use:** Known for its quick setup, it automatically installs a browser (Chromium) and doesn’t require extensive configuration, making it easier for new users to get started.
-- **Better test runner:** Cypress includes a graphical test runner that provides real-time feedback, showing tests, assertions, and a time-travel feature that lets you go back to previous steps in the test. This interactive GUI can make it easier to understand test flow and debug issues.
+In order to implement this solution, I took the decision to make use of the Page Object design pattern. Here are the key reasons for that:
 
 ### Page Object design pattern
 
@@ -30,7 +22,6 @@ In order to implement this solution, I have chosen Cypress framework and also ma
 
 ## Table of Contents
 
-- [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
@@ -42,31 +33,21 @@ In order to implement this solution, I have chosen Cypress framework and also ma
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
-
-- **Reusable Test Components**: Designed for modularity and reusability across multiple test cases.
-- **Custom Commands:** Simplifies common actions and enhances readability.
-- **Environment Configuration:** Easily switch environments by configuring settings.
-- **Cross-Browser Testing**: Supports multiple browsers for comprehensive testing.
-- **CI/CD Ready:** [[For Next Iterations]](#next-iterations) Designed to integrate with CI tools like Jenkins, GitHub Actions, etc.
-- **Parallel Execution:** Supports parallel test execution to speed up testing.
-- **Detailed Reports:** [[For Next Iterations]](#next-iterations) Generates comprehensive test reports for tracking and analytics.
-
 ## Prerequisites
 
 To use this project, ensure you have the following installed:
 
 - **Node.js** (v18.x or above)
 - **npm** (v10.x or above)  
-- **Cypress** (v13.x or above)
+- **Cypress** (v14.x or above)
 
 ## Installation
 
 To set up this framework locally, clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/peter-rr/edgetier-test-automation-framework.git
-cd edgetier-test-automation-framework
+git clone https://github.com/peter-rr/stradivarius-prueba-tecnica.git
+cd stradivarius-prueba-tecnica
 npm install
 ```
 
@@ -76,7 +57,6 @@ npm install
 |-- cypress/
     |-- e2e/              # Test files organized by feature
     |-- fixtures/         # Test data for reusable cases (JSON format)
-    |-- plugins/          # Custom Cypress plugins
     |-- support/
         |-- page_objects/ # Contains class files for every page object
         |-- commands.js   # Custom commands for complex actions
@@ -98,39 +78,26 @@ The configuration is handled via `cypress.config.js`. Here are the key configura
 
 ```js
 module.exports = {
-  baseUrl: "https://demo.edgetier.com/main/",
+  baseUrl: "https://www.demoblaze.com/",
   env: {
-    apiUrl: "https://api.demo.edgetier.com"
+    apiUrl: "https://api.demoblaze.com"
   },
   viewportHeight: 1080,
   viewportWidth: 1920
 };
 ```
 
-### Environment Configurations
-
-The project supports multiple environments. Set up environment-specific variables in `cypress.config.js` or via `.env` files for custom configurations.
-
-Example:
-
-```js
-{
-  "env": {
-    "baseUrl": "https://your-staging-url.com",
-    "apiEndpoint": "/api/v1/"
-  }
-}
-```
-
 ## Usage
 
 The package exposes two different test files located in `cypress/e2e/` folder:
 
-- `testsForNavigationPage.js`: contains scenarios to verify the navigation across the different pages of the application. See code: [cypress/e2e/testsForNavigationPage.js](cypress/e2e/testsForNavigationPage.js)
+- `testsForJSErrors.js`: contains scenarios to verify there are no Javascript errors when visiting the application under test. See code: [cypress/e2e/testsForJSErrors.js](cypress/e2e/testsForJSErrors.js)
 
-- `testsForChatPage.js`: contains the scenarios to test the functionalities I've considered as most important on the Chat page. More scenarios may be added to give full test coverage. See code: [cypress/e2e/testsForChatPage.js](cypress/e2e/testsForChatPage.js)
+- `testsForPageStatus.js`: contains the scenarios to test all the pages linked return the expected status code. See code: [cypress/e2e/testsForPageStatus.js](cypress/e2e/testsForPageStatus.js)
 
-If you want to go deeper into the interactions with web elements and the methods belonging to any page object, you'll find all the code related under `cypress/support/page_objects/` folder, where all the different page objects are located. See the code for the page object file implemented for the Chat page: [cypress/support/page_objects/chatPage.js](cypress/support/page_objects/chatPage.js)
+- `testsForShoppingCart.js`: contains the tests to verify the shopping cart element works correctly. See code: [cypress/e2e/testsForShoppingCart.js](cypress/e2e/testsForShoppingCart.js)
+
+If you want to go deeper into the interactions with web elements and the methods belonging to any page object, you'll find all the code related under `cypress/support/page_objects/` folder, where all the different page objects are located.
 
 ## Running tests
 
@@ -156,24 +123,6 @@ Launch Cypress in interactive mode for local testing and debugging:
 
 ```bash
 npx cypress open
-```
-
-### Running Tests by Tag (Optional)
-
-To run tests based on specific tags or conditions, modify the command in `package.json` or use tags in test files for filtering. For instance:
-
-```bash
-describe("Smoke Test", { tags: "@smoke" }, () => {
-  it("should load the homepage", () => {
-    // Test code here
-  });
-});
-```
-
-Then run tagged tests with:
-
-```bash
-npx cypress run --env grepTags="@smoke"
 ```
 
 ## Best practices
@@ -220,13 +169,13 @@ See [Cypress Documentation](https://docs.cypress.io/app/get-started/why-cypress)
 
 ## Next Iterations
 
-Areas to take into consideration as improvements for potential next iterations of the framework:
+Areas to take into consideration as improvements for potential next iterations of this framework:
 
-- **Test coverage:** Adding more test cases or scenarios.
+- **Test coverage:** More test cases or scenarios may be added to give full test coverage.
 
 - **Integration with CI/CD pipelines:** Implementing the logic to integrate the framework with CI tools like Jenkins or GitHub Actions.
 
-- **Reporting and analytics:** Describing how to generate and access reports to provide insight into test outcomes.
+- **Reporting and analytics:** Describing how to generate and access comprehensive test reports to provide insight into test outcomes.
 
 - **Dockerization:** To provide a clear and reproducible environment, reducing setup time, easing collaboration, and improving consistency across the development lifecycle.
 
@@ -239,4 +188,3 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
-
