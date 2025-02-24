@@ -41,8 +41,6 @@ export class CartPage {
         cy.get('tbody tr').should('not.exist')
     }
 
-
-
 }
     
 export const onCartPage = new CartPage()
