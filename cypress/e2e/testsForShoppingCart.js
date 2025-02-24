@@ -44,4 +44,9 @@ describe('Validates the shopping cart works correctly', () => {
         onCartPage.checkTotalPrice()
     })
 
+    it('Verify the cart is empty when no products added', () => {
+        navigateTo.cartPage()
+        onCartPage.checkMessageForEmptyCart()
+    })
+
 })

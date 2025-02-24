@@ -34,6 +34,12 @@ export class CartPage {
         })
 
     }
+    
+    checkMessageForEmptyCart() {
+        // Assert the current message for empty cart is displayed
+        cy.get('#tbodyid').should('have.text', '\n            ')
+        cy.get('tbody tr').should('not.exist')
+    }
 
 
 
