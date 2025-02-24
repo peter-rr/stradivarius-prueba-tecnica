@@ -20,5 +20,4 @@ describe('Validate page status code for all links at Demoblaze', () => {
             }
         })
     })
-
 })

@@ -8,7 +8,7 @@ describe('Validates the shopping cart works correctly', () => {
         cy.visit('/')
     })
 
-    it.only('login with existing user', () => {
+    it('login with existing user', () => {
         onHomePage.logIn('test-customer@maildrop.cc', 'Password123')
     })
 
